@@ -26,6 +26,7 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 7px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.421);
+    text-decoration: underline;
 }
 
 .botao{
@@ -65,4 +66,8 @@ h2{
     text-decoration: underline;
     font-size: medium;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.211);
+}
+
+ul{
+    list-style: none;
 }
