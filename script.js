@@ -16,16 +16,19 @@ function sortearNomes() {
     resultado = {}; // Limpa o resultado anterior
 
     for (const dia of diasSemana) {
+        let excluidos = [];
         if (dia === "Segunda-feira") {
             // Sorteia um nome para segunda-feira, exceto Geovanne, Elton, Alexandre e Felipe
-            const nomeSorteado = sortear(nomesRestantes, ["Geovanne", "Elton", "Alexandre", "Felipe"]);
+            excluidos = ["Geovanne", "Elton", "Alexandre", "Felipe"];
+            const nomeSorteado = sortear(nomesRestantes, excluidos);
             resultado[dia] = [nomeSorteado];
             nomesRestantes.splice(nomesRestantes.indexOf(nomeSorteado), 1);
         } else if (dia === "Terça-feira") {
             // Sorteia dois nomes para terça-feira, exceto David e Alexandre
-            const nome1 = sortear(nomesRestantes, ["David", "Alexandre"]);
+            excluidos = ["David", "Alexandre"];
+            const nome1 = sortear(nomesRestantes, excluidos);
             nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
-            const nome2 = sortear(nomesRestantes, ["David", "Alexandre"]);
+            const nome2 = sortear(nomesRestantes, excluidos);
             resultado[dia] = [nome1, nome2];
             nomesRestantes.splice(nomesRestantes.indexOf(nome2), 1);
         } else if (dia === "Quarta-feira" || dia === "Quinta-feira") {
@@ -44,6 +47,25 @@ function sortearNomes() {
     }
 }
 
+function verificarRepeticoes(resultado) {
+    const nomesUsados = new Set();
+    for (const nomesSorteados of Object.values(resultado)) {
+        for (const nome of nomesSorteados) {
+            if (nomesUsados.has(nome)) {
+                return true; // Encontrou repetição
+            }
+            nomesUsados.add(nome);
+        }
+    }
+    return false; // Não encontrou repetição
+}
+
+function sortearNomesSemRepeticoes() {
+    do {
+        sortearNomes();
+    } while (verificarRepeticoes(resultado));
+}
+
 function exibirResultado() {
     const resultadoDiv = document.getElementById('resultado');
     resultadoDiv.innerHTML = '';
@@ -55,6 +77,6 @@ function exibirResultado() {
 }
 
 document.getElementById('sortearButton').addEventListener('click', () => {
-    sortearNomes();
+    sortearNomesSemRepeticoes();
     exibirResultado();
 });
