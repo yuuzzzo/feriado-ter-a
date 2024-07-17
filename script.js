@@ -1,4 +1,4 @@
-const nomes = ["Elton", "David", "Rubens", "Felipe", "Alexandre", "Geovanne", "Vinicius", "Danilo"];
+const nomes = ["Elton", "David", "Rubens", "Felipe", "Alexandre", "Geovanne", "Vinicius", "Danilo", "Victor"];
 const diasSemana = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"];
 let resultado = {};
 
@@ -18,31 +18,26 @@ function sortearNomes() {
     for (const dia of diasSemana) {
         let excluidos = [];
         if (dia === "Segunda-feira") {
-            // Sorteia um nome para segunda-feira, exceto Geovanne, Elton, Alexandre e Felipe
-            excluidos = ["Geovanne", "Elton", "Alexandre", "Felipe"];
-            const nomeSorteado = sortear(nomesRestantes, excluidos);
-            resultado[dia] = [nomeSorteado];
-            nomesRestantes.splice(nomesRestantes.indexOf(nomeSorteado), 1);
-        } else if (dia === "Terça-feira") {
-            // Sorteia dois nomes para terça-feira, exceto David e Alexandre
-            excluidos = ["David", "Alexandre"];
+            // Sorteia dois nomes para segunda-feira, exceto Danilo e Elton
+            excluidos = ["Danilo", "Elton"];
             const nome1 = sortear(nomesRestantes, excluidos);
             nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
             const nome2 = sortear(nomesRestantes, excluidos);
             resultado[dia] = [nome1, nome2];
             nomesRestantes.splice(nomesRestantes.indexOf(nome2), 1);
-        } else if (dia === "Quarta-feira" || dia === "Quinta-feira") {
-            // Sorteia dois nomes para quarta e quinta-feira
+        } else if (dia === "Terça-feira") {
+            // Sorteia um nome para terça-feira, exceto David
+            excluidos = ["David"];
+            const nomeSorteado = sortear(nomesRestantes, excluidos);
+            resultado[dia] = [nomeSorteado];
+            nomesRestantes.splice(nomesRestantes.indexOf(nomeSorteado), 1);
+        } else if (dia === "Quarta-feira" || dia === "Quinta-feira" || dia === "Sexta-feira") {
+            // Sorteia dois nomes para quarta, quinta e sexta-feira
             const nome1 = sortear(nomesRestantes);
             nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
             const nome2 = sortear(nomesRestantes);
             resultado[dia] = [nome1, nome2];
             nomesRestantes.splice(nomesRestantes.indexOf(nome2), 1);
-        } else if (dia === "Sexta-feira") {
-            // Sorteia um nome para sexta-feira
-            const nomeSorteado = sortear(nomesRestantes);
-            resultado[dia] = [nomeSorteado];
-            nomesRestantes.splice(nomesRestantes.indexOf(nomeSorteado), 1);
         }
     }
 }
