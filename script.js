@@ -20,17 +20,27 @@ function sortearNomes() {
         if (dia === "Segunda-feira") {
             // Sorteia dois nomes para segunda-feira, exceto Elton
             excluidos = ["Elton"];
+            const nome1 = sortear(nomesRestantes, excluidos);
+            nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
+            excluidos.push(nome1); // Adiciona o primeiro sorteado à lista de excluídos para não repetir no mesmo dia
+            const nome2 = sortear(nomesRestantes, excluidos);
+            resultado[dia] = [nome1, nome2];
+            nomesRestantes.splice(nomesRestantes.indexOf(nome2), 1);
         } else if (dia === "Terça-feira") {
-            // Sorteia dois nomes para terça-feira, exceto David
+            // Sorteia um nome para terça-feira, exceto David
             excluidos = ["David"];
+            const nomeSorteado = sortear(nomesRestantes, excluidos);
+            resultado[dia] = [nomeSorteado];
+            nomesRestantes.splice(nomesRestantes.indexOf(nomeSorteado), 1);
+        } else if (dia === "Quarta-feira" || dia === "Quinta-feira" || dia === "Sexta-feira") {
+            // Sorteia dois nomes para quarta, quinta e sexta-feira
+            const nome1 = sortear(nomesRestantes);
+            nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
+            excluidos.push(nome1); // Adiciona o primeiro sorteado à lista de excluídos para não repetir no mesmo dia
+            const nome2 = sortear(nomesRestantes, excluidos);
+            resultado[dia] = [nome1, nome2];
+            nomesRestantes.splice(nomesRestantes.indexOf(nome2), 1);
         }
-        // Sorteia dois nomes para os dias restantes
-        const nome1 = sortear(nomesRestantes, excluidos);
-        nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
-        excluidos.push(nome1); // Adiciona o primeiro sorteado à lista de excluídos para não repetir no mesmo dia
-        const nome2 = sortear(nomesRestantes, excluidos);
-        resultado[dia] = [nome1, nome2];
-        nomesRestantes.splice(nomesRestantes.indexOf(nome2), 1);
     }
 }
 
