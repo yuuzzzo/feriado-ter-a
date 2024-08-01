@@ -17,9 +17,8 @@ function sortearNomes() {
 
     for (const dia of diasSemana) {
         let excluidos = [];
-        if (dia === "Segunda-feira") {
-            // Sorteia dois nomes para segunda-feira, exceto Elton
-            excluidos = ["Elton"];
+        if (dia === "Segunda-feira" || dia === "Quarta-feira" || dia === "Quinta-feira") {
+            // Sorteia dois nomes para segunda, quarta e quinta-feira
             const nome1 = sortear(nomesRestantes, excluidos);
             nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
             excluidos.push(nome1); // Adiciona o primeiro sorteado à lista de excluídos para não repetir no mesmo dia
@@ -32,8 +31,8 @@ function sortearNomes() {
             const nomeSorteado = sortear(nomesRestantes, excluidos);
             resultado[dia] = [nomeSorteado];
             nomesRestantes.splice(nomesRestantes.indexOf(nomeSorteado), 1);
-        } else if (dia === "Quarta-feira" || dia === "Quinta-feira" || dia === "Sexta-feira") {
-            // Sorteia dois nomes para quarta, quinta e sexta-feira
+        } else if (dia === "Sexta-feira") {
+            // Sorteia dois nomes para sexta-feira
             const nome1 = sortear(nomesRestantes);
             nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
             excluidos.push(nome1); // Adiciona o primeiro sorteado à lista de excluídos para não repetir no mesmo dia
