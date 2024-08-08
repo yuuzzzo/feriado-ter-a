@@ -1,4 +1,4 @@
-const nomes = ["Elton", "David", "Rubens", "Felipe", "Alexandre", "Geovanne", "Vinicius", "Danilo", "Victor"];
+const nomes = ["Elton", "Rubens", "Felipe", "Alexandre", "Geovanne", "Vinicius", "Danilo", "Victor"]; // David excluído
 const diasSemana = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"];
 let resultado = {};
 
@@ -17,23 +17,14 @@ function sortearNomes() {
 
     for (const dia of diasSemana) {
         let excluidos = [];
-        if (dia === "Segunda-feira" || dia === "Quarta-feira" || dia === "Quinta-feira") {
-            // Sorteia dois nomes para segunda, quarta e quinta-feira
-            const nome1 = sortear(nomesRestantes, excluidos);
-            nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
-            excluidos.push(nome1); // Adiciona o primeiro sorteado à lista de excluídos para não repetir no mesmo dia
-            const nome2 = sortear(nomesRestantes, excluidos);
-            resultado[dia] = [nome1, nome2];
-            nomesRestantes.splice(nomesRestantes.indexOf(nome2), 1);
-        } else if (dia === "Terça-feira") {
-            // Sorteia um nome para terça-feira, exceto David
-            excluidos = ["David"];
+        if (dia === "Segunda-feira" || dia === "Sexta-feira") {
+            // Sorteia um nome para segunda-feira e sexta-feira
             const nomeSorteado = sortear(nomesRestantes, excluidos);
             resultado[dia] = [nomeSorteado];
             nomesRestantes.splice(nomesRestantes.indexOf(nomeSorteado), 1);
-        } else if (dia === "Sexta-feira") {
-            // Sorteia dois nomes para sexta-feira
-            const nome1 = sortear(nomesRestantes);
+        } else {
+            // Sorteia dois nomes para terça-feira, quarta-feira e quinta-feira
+            const nome1 = sortear(nomesRestantes, excluidos);
             nomesRestantes.splice(nomesRestantes.indexOf(nome1), 1);
             excluidos.push(nome1); // Adiciona o primeiro sorteado à lista de excluídos para não repetir no mesmo dia
             const nome2 = sortear(nomesRestantes, excluidos);
