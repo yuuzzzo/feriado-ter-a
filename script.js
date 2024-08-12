@@ -25,6 +25,16 @@ function sortearNomes() {
             nomesRestantes.splice(nomesRestantes.indexOf(nome2), 1);
             excluidos.push(nomeSorteado, nome2);
             resultado[dia] = [nomeSorteado, nome2];
+            } 
+        else if(dia == "Terça-feira"){
+            // Sorteia dois nomes para terça feira
+            const nome3 = sortear(nomesRestantes, excluidos);
+            nomesRestantes.splice(nomesRestantes.indexOf(nome3), 1);
+            excluidos.push(nome3);
+            const nome4 = sortear(nomesRestantes, excluidos);
+            nomesRestantes.splice(nomesRestantes.indexOf(nome4), 1);
+            excluidos.push(nome4);
+            resultado[dia] = [nome3, nome4];
         } else {
             // Sorteia um nome para terça até quinta feira
             const nome1 = sortear(nomesRestantes, excluidos);
