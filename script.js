@@ -1,4 +1,4 @@
-const nomes = ["Elton", "David", "Rubens", "Felipe", "Alexandre", "Geovanne", "Vinicius", "Danilo", "Victor", "Viictor"];
+const nomes = ["Elton", "David", "Felipe","Alexandre", "Geovanne", "Vinicius", "Danilo", "Victor", "Viictor"];
 const diasSemana = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"];
 let resultado = {};
 
